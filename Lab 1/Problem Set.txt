@@ -9,18 +9,8 @@ Then displays the reversed array.
 Get an input string and check if it is a palindrome. 
 
 ---------------
- 
-Implement the following expression without using div: x = (c-d)%2 
 
----------------
- 
-Generate the object code for the following la instructions: 
-	la    $t1, a 
-	la    $t2, b 
-	.data 
-	.space 40 
-	a: .word 1, 2, 3, 4 
-	b: .word 1 
+Implement the following expression without using div: x = (c-d)%2
 
 ---------------
 

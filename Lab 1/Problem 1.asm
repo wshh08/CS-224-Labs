@@ -50,7 +50,6 @@ begrev:
 	li $v0, 4
 	syscall
 	la $a0, newLine
-	li $v0, 4
 	syscall
 rev:
 	bge $t0, $t1, dispQuit
@@ -79,7 +78,6 @@ disp:
 	j disp
 enddisp:
 	la $a0, newLine
-	li $v0, 4
 	syscall
 	jr $ra
 dispQuit:
