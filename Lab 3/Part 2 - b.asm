@@ -1,25 +1,25 @@
 # Ali Altaf Salemwala
 # Lab 3
+# Part 1 - d
 # Part 2 - b
 
 .globl get_rand_FP
 .data
-	n:	.asciiz "\n"
+	space:	.asciiz " "
 .text
 main:
 	li $t0, 10		# array of $t0 normal values of IEEE 754 32-bit floating-point numbers
 loop:
-	li $a0, 0xFE95AB23
+	li $a0, 0xFE95AB23	# $a0 contains seed for random hex (randomly chosen seed)
 	jal get_rand_FP
-	add $a0, $v0, $0
+	move $a0, $v0
 	addi $t0, $t0, -1
 	li $v0, 34
-	syscall
-	la $a0, n
+	syscall			# display FP value
+	la $a0, space
 	li $v0, 4
 	syscall
 	bnez $t0, loop
-bitte:
 	li $v0, 10
 	syscall
 
@@ -28,12 +28,11 @@ get_rand_FP:
 	sw $ra, 4($sp)
 	sw $a0, 0($sp)
 find:
-	li $v0, 41
-	syscall
-	bltz $a0, find
-	jal special_case
-	bnez $v0, find
-	add $v0, $a0, $0
+	li $v0, 41		# uses whatever intial value in $a0 as seed for random function
+	syscall			# $a0 contains random hex value
+	jal special_case	# make sure the number is normal
+	bnez $v0, find		# if special case repeats until normal
+	move $v0, $a0
 	lw $ra, 4($sp)
 	lw $a0, 0($sp)
 	addi $sp, $sp, 8

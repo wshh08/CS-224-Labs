@@ -1,18 +1,27 @@
+# Ali Altaf Salemwala
+# Lab 3
+# Part 1 - d
+# Part 2 - f
+
 .globl FastSort
 main:
 .data
 	newLine:	.asciiz "\n"
+	space:		.asciiz " "
 .text
-	li $a0, 3
+	li $a0, 5
 	jal fillArray
-	move $t0, $a0
-	move $a1, $v0
+	move $t0, $a0		# $t0 contains number of elements in array
+	move $a1, $v0		# $a1 contains beginning address of array
 	move $s0, $a1
 	move $s1, $a0
 	li $t1, 1
 print:
 	lw $a0, ($a1)
 	li $v0, 34
+	syscall
+	la $a0, space
+	li $v0, 4
 	syscall
 	addi $t0, $t0, -1
 	addi $a1, $a1, 4
@@ -31,6 +40,7 @@ print:
 quit:
 	li $v0, 10
 	syscall
+
 FastSort:
 	ble $a1, 1, return
 	addi $sp, $sp, -32
